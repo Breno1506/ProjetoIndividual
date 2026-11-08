@@ -30,12 +30,12 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 5vw; /* NOVO (era 80px) */
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 2.5vw; /* NOVO (era 40px) */
+  padding-right: 2.5vw; /* NOVO (era 40px) */
   z-index: 10;
 }
 
@@ -44,19 +44,19 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-size: 18px;
+  font-size: 1.1vw; /* NOVO (era 18px) */
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .menu li {
-  margin-right: 30px;
+  margin-right: 1.9vw; /* NOVO (era 30px) */
 }
 
 .menu a {
   color: white;
-  font-size: 17px;
+  font-size: 1.05vw; /* NOVO (era 17px) */
   font-weight: 600;
   text-decoration: none;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
@@ -75,9 +75,9 @@ body {
   color: black;
   border-radius: 5px;
   border: none;
-  font-size: 15px;
-  padding: 6px 30px;
-  width: 100px;
+  font-size: 0.95vw; /* NOVO (era 15px) */
+  padding: 0.4vw 1.9vw; /* NOVO (era 6px 30px) */
+  width: 6.25vw; /* NOVO (era 100px) */
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -96,6 +96,8 @@ body {
   color: white;
   background-image: linear-gradient(to bottom, transparent 95%, white 100%), url('../assets/imgs/image\ 11.svg');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .banner .container {
@@ -112,7 +114,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  font-size: 36px;
+  font-size: 2.25vw; /* NOVO (era 36px) */
   color: white;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
@@ -123,12 +125,12 @@ body {
 
 .botao-chamada {
   display: inline-block;
-  margin-top: 24px;
-  padding: 12px 30px;
+  margin-top: 1.5vw; /* NOVO (era 24px) */
+  padding: 0.75vw 1.9vw; /* NOVO (era 12px 30px) */
   background-color: transparent;
   color: #fff;
   border: 2px solid blanchedalmond;
-  font-size: 18px;
+  font-size: 1.1vw; /* NOVO (era 18px) */
   font-weight: 800;
   text-decoration: none;
   border-radius: 5px;
@@ -152,8 +154,8 @@ body {
   position: relative;
   min-height: var(--tamanho-banner);
   align-items: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 7vw;
+  padding-right: 7vw;
   box-sizing: border-box;
 }
 
@@ -167,15 +169,15 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 50px;
+  column-gap: 3.1vw; /* NOVO (era 50px) */
 }
 
 .sobre-texto h2 {
   grid-column: 1 / -1;
-  font-size: 44px;
+  font-size: 2.75vw; /* NOVO (era 44px) */
   font-weight: 800;
   line-height: 1.1;
-  margin: 0 0 30px 0;
+  margin: 0 0 1.9vw 0; /* NOVO (era 0 0 30px 0) */
   color: #111;
   text-transform: uppercase;
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
@@ -184,30 +186,30 @@ body {
 .sobre-texto h2::before {
   content: "Site informativo";
   display: block;
-  font-size: 14px;
+  font-size: 0.9vw; /* NOVO (era 14px) */
   font-weight: 800;
-  letter-spacing: 4px;
+  letter-spacing: 0.25vw; /* NOVO (era 4px) */
   color: #ff4fa3;
-  margin-bottom: 12px;
+  margin-bottom: 0.75vw; /* NOVO (era 12px) */
 }
 
 .sobre-texto p {
   text-align: left;
-  font-size: 17px;
+  font-size: 1.05vw; /* NOVO (era 17px) */
   font-weight: 700;
   line-height: 1.7;
   color: #111;
   margin: 0;
-  padding-top: 15px;
+  padding-top: 0.95vw; /* NOVO (era 15px) */
   border-top: 3px solid #F2C230;
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 .gogogo {
   position: absolute;
-  right: 100px;
-  top: 110px;
-  width: 100px;
+  right: 7vw;
+  top: 12vh;
+  width: 6.25vw; /* NOVO (era 100px) */
   height: auto;
 }
 
@@ -224,7 +226,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   box-sizing: border-box;
-  padding-top: 80px;
+  padding-top: 5vw; /* NOVO (era 80px) */
 }
 
 .banner2 .container {
@@ -234,8 +236,8 @@ body {
 }
 
 .banner2 h1 {
-  margin: 0 0 20px 0;
-  font-size: 44px;
+  margin: 0 0 1.25vw 0; /* NOVO (era 0 0 20px 0) */
+  font-size: 2.75vw; /* NOVO (era 44px) */
   font-weight: 800;
   line-height: 1.1;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
@@ -249,7 +251,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 1.1vw; /* NOVO (era 18px) */
   color: white;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   line-height: 1.5;
@@ -259,11 +261,11 @@ body {
 
 .footer {
   background-color: #fff;
-  height: 60px;
+  height: 3.75vw; /* NOVO (era 60px) */
   color: #111;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.1vw; /* NOVO (era 18px) */
   font-weight: bolder;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   width: 100%;
@@ -279,7 +281,7 @@ body {
 }
 
 .footer .container .version {
-  font-size: 12px;
+  font-size: 0.75vw; /* NOVO (era 12px) */
 }
 
 /* LOGIN */
@@ -288,12 +290,20 @@ body {
   height: var(--tamanho-login);
   background-image: url('../assets/imgs/image\ 14.png');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 5vw; /* NOVO (era 80px) */
+  box-sizing: border-box;
 }
 
 .cadastro {
   height: var(--tamanho-login);
   background-image: url('../assets/imgs/image\ 10.svg');
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 5vw; /* NOVO (era 80px) */
+  box-sizing: border-box;
 }
 
 .login .container {
@@ -309,11 +319,11 @@ body {
 }
 
 .card {
-  width: 380px;
+  width: 23.75vw; /* NOVO (era 380px) */
   background-color: whitesmoke;
   border: 1px solid #eeeeee;
   border-radius: 12px;
-  padding: 40px;
+  padding: 2.5vw; /* NOVO (era 40px) */
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -321,8 +331,8 @@ body {
 
 
 .card h2 {
-  margin: 0 0 30px 0;
-  font-size: 28px;
+  margin: 0 0 1.9vw 0; /* NOVO (era 0 0 30px 0) */
+  font-size: 1.75vw; /* NOVO (era 28px) */
   color: #222222;
   text-align: center;
 }
@@ -334,9 +344,9 @@ body {
 }
 
 .formulario span {
-  font-size: 13px;
+  font-size: 0.8vw; /* NOVO (era 13px) */
   color: #777777;
-  margin-bottom: 6px;
+  margin-bottom: 0.4vw; /* NOVO (era 6px) */
 }
 
 .formulario input {
@@ -344,10 +354,10 @@ body {
   border: none;
   border-bottom: 2px solid #dddddd;
   color: #222222;
-  padding: 10px 0;
-  font-size: 15px;
+  padding: 0.6vw 0; /* NOVO (era 10px 0) */
+  font-size: 0.95vw; /* NOVO (era 15px) */
   outline: none;
-  margin-bottom: 20px;
+  margin-bottom: 1.25vw; /* NOVO (era 20px) */
     transition: all 0.5s ease;
 }
 
@@ -359,7 +369,7 @@ body {
   border: 2px solid #32b9cd;
   background-color: white;
   color: gray;
-  height: 36px;
+  height: 2.25vw; /* NOVO (era 36px) */
   text-align: center;
   border-radius: 10px;
   margin: 0;
@@ -369,7 +379,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 5px 0;
+  padding: 0.3vw 0; /* NOVO (era 5px 0) */
 }
 
 .botao {
@@ -379,12 +389,12 @@ body {
   border-radius: 6px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1vw; /* NOVO (era 16px) */
   color: #ff4fa3;
   background-color: transparent;
   width: 100%;
-  height: 44px;
-  margin-top: 10px;
+  height: 2.75vw; /* NOVO (era 44px) */
+  margin-top: 0.6vw; /* NOVO (era 10px) */
   transition: all 0.3s ease;
 }
 
@@ -395,14 +405,14 @@ body {
 }
 
 .loading-div {
-  width: 50px;
+  width: 3.1vw; /* NOVO (era 50px) */
   margin: auto;
   display: none;
 }
 
 .loading-div img {
-  height: 50px;
-  width: 50px;
+  height: 3.1vw; /* NOVO (era 50px) */
+  width: 3.1vw; /* NOVO (era 50px) */
 }
 
 #div_erros_login {
@@ -420,28 +430,28 @@ body {
   display: none;
   background-color: #fff;
   color: black;
-  width: 230px;
+  width: 14.4vw; /* NOVO (era 230px) */
   position: fixed;
   border-radius: 4px;
   border: #ED145B 3px solid;
-  padding: 10px;
+  padding: 0.6vw; /* NOVO (era 10px) */
   margin-right: 10%;
 }
 
 .card_erro #mensagem_erro {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1.25vw; /* NOVO (era 20px) */
 }
 
 .formulario .tipo_campo {
-  font-size: 20px;
+  font-size: 1.25vw; /* NOVO (era 20px) */
   font-weight: 600 !important;
 }
 
 input {
-  margin-bottom: 10px;
+  margin-bottom: 0.6vw; /* NOVO (era 10px) */
   border: 2px solid #32b9cd;
-  padding: 10px;
+  padding: 0.6vw; /* NOVO (era 10px) */
   text-align: center;
   border-radius: 10px;
 }
@@ -451,13 +461,13 @@ input {
   border: 0;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
+  font-size: 1.1vw; /* NOVO (era 18px) */
+  padding: 0.6vw 0.95vw; /* NOVO (era 10px 15px) */
   color: white;
   background-color: #ED145B;
-  width: 120px;
+  width: 7.5vw; /* NOVO (era 120px) */
   align-self: center;
-  margin-top: 5px;
+  margin-top: 0.3vw; /* NOVO (era 5px) */
 }
 
 /* SIMULADOR */
@@ -483,17 +493,17 @@ input {
 .mensagem-alarme {
   background-color: white;
   border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
+  width: 18.75vw; /* NOVO (era 300px) */
+  height: 5vw; /* NOVO (era 80px) */
+  margin: 0.6vw; /* NOVO (era 10px) */
+  padding: 0.6vw 0; /* NOVO (era 10px 0) */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .mensagem-alarme h3 {
-  font-size: 14px;
+  font-size: 0.9vw; /* NOVO (era 14px) */
   margin: 0;
 }
 
@@ -502,8 +512,8 @@ input {
 }
 
 .alarme-sino {
-  width: 48px;
-  height: 48px;
+  width: 3vw; /* NOVO (era 48px) */
+  height: 3vw; /* NOVO (era 48px) */
   animation-name: bell;
   animation-duration: 4s;
   background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
