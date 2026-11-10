@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Stand By Me | Quiz</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
+</head>
+
+<body>
+    <!--header inicio-->
+    <div class="cabecalho">
+        <ul class="menu">
+            <li>
+                <a href="index.html">
+                    <h2><span>Stand By</span> Me</h2>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Sobre nós</a>
+            </li>
+        </ul>
+    </div>
+    <!--header fim-->
+
+    <div class="quiz">
+        <div class="container">
+            <div class="card card-quiz">
+
+                <!-- Parte das perguntas -->
+                <div id="div_pergunta">
+                    <span id="numero_pergunta">Pergunta 1 de 5</span>
+                    <h2 id="texto_pergunta">Texto da pergunta</h2>
+
+                    <div id="div_alternativas">
+                        <button class="botao-alternativa">Alternativa 1</button>
+                        <button class="botao-alternativa">Alternativa 2</button>
+                        <button class="botao-alternativa">Alternativa 3</button>
+                        <button class="botao-alternativa">Alternativa 4</button>
+                    </div>
+                </div>
+
+                <!-- Parte do resultado (começa escondida) -->
+                <div id="div_resultado" style="display: none;">
+                    <h2>Você se identifica com:</h2>
+                    <h1 id="nome_personagem"></h1>
+                    <p id="descricao_personagem"></p>
+                    <button class="botao" onclick="refazer()">Refazer o quiz</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+        <div class="container">
+            <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+        </div>
+    </div>
+    <!--footer fim-->
+</body>
+
+</html>
+<script>
+  var perguntas = [];
+  var perguntaAtual = 0;
+  var pontos = {
+    "Jotaro Kujo": 0,
+    "Joseph Joestar": 0,
+    "Giorno Giovanna": 0,
+    "Josuke Higashikata": 0
+  };
+
+  function carregarQuiz() {
+    console.log("A tentar carregar perguntas do servidor...");
+    
+    fetch("/quiz/listar")
+      .then(function (resposta) {
+        console.log("Resposta do servidor recebida:", resposta.status);
+        if (resposta.ok) {
+          resposta.json().then(function (respostaCerta) {
+            console.log("Dados do quiz recebidos com sucesso:", respostaCerta);
+            perguntas = agruparDadosQuiz(respostaCerta);
+            mostrarPergunta();
+          });
+        } else {
+          console.error("Erro na resposta do servidor. Status:", resposta.status);
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro crítico de rede ao fazer o fetch:", erro);
+      });
+  }
+
+  function agruparDadosQuiz(dadosBanco) {
+    var mapaPerguntas = {};
+
+    dadosBanco.forEach(item => {
+      if (!mapaPerguntas[item.idPergunta]) {
+        mapaPerguntas[item.idPergunta] = {
+          texto: item.textoPergunta,
+          alternativas: []
+        };
+      }
+      mapaPerguntas[item.idPergunta].alternativas.push({
+        texto: item.textoAlternativa,
+        personagem: item.nomePersonagem
+      });
+    });
+
+    return Object.values(mapaPerguntas);
+  }
+
+  function mostrarPergunta() {
+    if (perguntas.length == 0) {
+      console.log("Ainda não há perguntas carregadas.");
+      return;
+    }
+
+    var pergunta = perguntas[perguntaAtual];
+
+    numero_pergunta.innerHTML = "Pergunta " + (perguntaAtual + 1) + " de " + perguntas.length;
+    texto_pergunta.innerHTML = pergunta.texto;
+
+    div_alternativas.innerHTML = "";
+
+    for (var i = 0; i < pergunta.alternativas.length; i++) {
+      var alternativa = pergunta.alternativas[i];
+
+      div_alternativas.innerHTML += `
+        <button class="botao-alternativa" onclick="responder('${alternativa.personagem}')">
+          ${alternativa.texto}
+        </button>
+      `;
+    }
+  }
+
+  function responder(personagem) {
+    if (pontos[personagem] != undefined) {
+      pontos[personagem]++;
+    }
+
+    perguntaAtual++;
+
+    if (perguntaAtual < perguntas.length) {
+      mostrarPergunta();
+    } else {
+      mostrarResultado();
+    }
+  }
+
+  function mostrarResultado() {
+    var vencedor = "Jotaro Kujo";
+    var maiorPontuacao = -1;
+
+    for (var nome in pontos) {
+      if (pontos[nome] > maiorPontuacao) {
+        maiorPontuacao = pontos[nome];
+        vencedor = nome;
+      }
+    }
+
+    var idPersonagemVencedor = 1;
+    if (vencedor == "Joseph Joestar") idPersonagemVencedor = 2;
+    else if (vencedor == "Giorno Giovanna") idPersonagemVencedor = 3;
+    else if (vencedor == "Josuke Higashikata") idPersonagemVencedor = 4;
+
+    nome_personagem.innerHTML = vencedor;
+    
+    var descricoes = {
+      "Jotaro Kujo": "Frio, forte e de poucas palavras. Você enfrenta os problemas de frente e não precisa de muito discurso para impor respeito.",
+      "Joseph Joestar": "Esperto e cheio de truques. Você resolve as situações com criatividade e sempre tem um plano na manga.",
+      "Giorno Giovanna": "Calmo, ambicioso e determinado. Você tem um sonho grande e vai atrás dele com muita convicção.",
+      "Josuke Higashikata": "Leal e protetor. Você valoriza os amigos e não aceita ver ninguém que você ama ser desrespeitado."
+    };
+
+    descricao_personagem.innerHTML = descricoes[vencedor];
+
+    div_pergunta.style.display = "none";
+    div_resultado.style.display = "block";
+
+    salvarResultado(idPersonagemVencedor);
+  }
+
+  function salvarResultado(idPersonagem) {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    if (idUsuario == undefined) {
+      console.log("Usuário não logado, resultado não salvo.");
+      return;
+    }
+
+    fetch("/resultados/publicar/" + idUsuario, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idPersonagemServer: idPersonagem
+      })
+    })
+      .then(function (resposta) {
+        console.log("Resultado salvo com sucesso, status: ", resposta.status);
+      })
+      .catch(function (erro) {
+        console.log(`#ERRO ao salvar resultado: ${erro}`);
+      });
+  }
+
+  function refazer() {
+    perguntaAtual = 0;
+    pontos = {
+      "Jotaro Kujo": 0,
+      "Joseph Joestar": 0,
+      "Giorno Giovanna": 0,
+      "Josuke Higashikata": 0
+    };
+
+    div_resultado.style.display = "none";
+    div_pergunta.style.display = "block";
+
+    mostrarPergunta();
+  }
+
+  // Executa ao carregar a página
+  carregarQuiz();
+</script>

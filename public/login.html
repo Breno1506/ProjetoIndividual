@@ -19,24 +19,24 @@
 
     <!--Header-->
 
-  <div class="cabecalho">
-    <ul class="menu">
-      <li>
-        <a href="index.html">
-          <h2><span>Stand By</span> Me</h2>
-        </a>
-      </li>
-      <li>
-        <a href="index.html">Home</a>
-      </li>
-      <li>
-        <a href="#">Sobre nós</a>
-      </li>
-      <li>
-        <a href="cadastro.html"><button class="botao-perfil">Login</button></a>
-      </li>
-    </ul>
-  </div>
+    <div class="cabecalho">
+        <ul class="menu">
+            <li>
+                <a href="index.html">
+                    <h2><span>Stand By</span> Me</h2>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Sobre nós</a>
+            </li>
+            <li>
+                <a href="cadastro.html"><button class="botao-perfil">Login</button></a>
+            </li>
+        </ul>
+    </div>
 
 
     <div class="login">
@@ -70,11 +70,11 @@
     </div>
 
     <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+    <div class="footer">
+        <div class="container">
+            <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+        </div>
     </div>
-  </div>
     <!--footer fim-->
 
 </body>
@@ -124,10 +124,9 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./quizPersonagem.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

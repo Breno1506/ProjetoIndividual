@@ -1,7 +1,7 @@
-var avisoModel = require("../models/avisoModel");
+var avaliacaoModel = require("../models/avaliacaoModel");
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    avaliacaoModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -9,7 +9,7 @@ function listar(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as avaliações: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -17,7 +17,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    avaliacaoModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -31,7 +31,7 @@ function listarPorUsuario(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "Houve um erro ao buscar os avisos: ",
+                    "Houve um erro ao buscar as avaliações: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
@@ -39,40 +39,16 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarDescricao(req, res) {
-    var descricao = req.params.descricao;
-
-    avisoModel.pesquisarDescricao(descricao)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
 function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
+    var nota = req.body.nota;
     var idUsuario = req.params.idUsuario;
 
-    if (titulo == undefined) {
-        res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinido!");
+    if (nota == undefined) {
+        res.status(400).send("A nota está indefinida!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avaliacaoModel.publicar(nota, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -81,7 +57,7 @@ function publicar(req, res) {
             .catch(
                 function (erro) {
                     console.log(erro);
-                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    console.log("Houve um erro ao salvar a avaliação: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -89,10 +65,10 @@ function publicar(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var novaNota = req.body.nota;
+    var idAvaliacao = req.params.idAvaliacao;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avaliacaoModel.editar(novaNota, idAvaliacao)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -101,17 +77,16 @@ function editar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                console.log("Houve um erro ao editar a avaliação: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
-
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idAvaliacao = req.params.idAvaliacao;
 
-    avisoModel.deletar(idAviso)
+    avaliacaoModel.deletar(idAvaliacao)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -120,7 +95,7 @@ function deletar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                console.log("Houve um erro ao deletar a avaliação: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -129,7 +104,6 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    pesquisarDescricao,
     publicar,
     editar,
     deletar
