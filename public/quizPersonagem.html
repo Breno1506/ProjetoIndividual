@@ -72,7 +72,53 @@
 
 </html>
 <script>
-  var perguntas = [];
+  var perguntas = [
+    {
+      texto: "Num sábado livre, o que você prefere fazer?",
+      alternativas: [
+        { texto: "Ficar sozinho, no meu canto", personagem: "Jotaro Kujo" },
+        { texto: "Aprontar alguma brincadeira", personagem: "Joseph Joestar" },
+        { texto: "Correr atrás de um objetivo importante", personagem: "Giorno Giovanna" },
+        { texto: "Passar o dia com os amigos", personagem: "Josuke Higashikata" }
+      ]
+    },
+    {
+      texto: "Alguém desrespeita um amigo seu. Qual é a sua reação?",
+      alternativas: [
+        { texto: "Encaro a pessoa e falo pouco", personagem: "Jotaro Kujo" },
+        { texto: "Dou um jeito de me vingar de forma esperta", personagem: "Joseph Joestar" },
+        { texto: "Resolvo com calma e firmeza", personagem: "Giorno Giovanna" },
+        { texto: "Defendo meu amigo na hora", personagem: "Josuke Higashikata" }
+      ]
+    },
+    {
+      texto: "Como você costuma resolver um problema difícil?",
+      alternativas: [
+        { texto: "Enfrento de frente", personagem: "Jotaro Kujo" },
+        { texto: "Penso num plano criativo", personagem: "Joseph Joestar" },
+        { texto: "Sigo firme até conseguir", personagem: "Giorno Giovanna" },
+        { texto: "Peço ajuda e resolvemos juntos", personagem: "Josuke Higashikata" }
+      ]
+    },
+    {
+      texto: "Qual dessas frases mais combina com você?",
+      alternativas: [
+        { texto: "Menos conversa, mais ação", personagem: "Jotaro Kujo" },
+        { texto: "Sempre tenho um plano na manga", personagem: "Joseph Joestar" },
+        { texto: "Tenho um grande sonho", personagem: "Giorno Giovanna" },
+        { texto: "Meus amigos vêm em primeiro lugar", personagem: "Josuke Higashikata" }
+      ]
+    },
+    {
+      texto: "Como as pessoas te descrevem?",
+      alternativas: [
+        { texto: "Sério e difícil de impressionar", personagem: "Jotaro Kujo" },
+        { texto: "Divertido e imprevisível", personagem: "Joseph Joestar" },
+        { texto: "Calmo e determinado", personagem: "Giorno Giovanna" },
+        { texto: "Leal e protetor", personagem: "Josuke Higashikata" }
+      ]
+    }
+  ];
   var perguntaAtual = 0;
   var pontos = {
     "Jotaro Kujo": 0,
@@ -233,5 +279,5 @@
   }
 
   // Executa ao carregar a página
-  carregarQuiz();
+  mostrarPergunta();
 </script>

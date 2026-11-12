@@ -662,3 +662,9 @@ input {
     display: none;
   }
 }
+.tela_carregando {
+    display: none;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
