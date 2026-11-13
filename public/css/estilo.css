@@ -521,11 +521,25 @@ input {
 }
 
 @keyframes bell {
-  0% { transform: rotate(25deg); }
-  25% { transform: rotate(-25deg); }
-  50% { transform: rotate(25deg); }
-  75% { transform: rotate(-25deg); }
-  100% { transform: rotate(25deg); }
+  0% {
+    transform: rotate(25deg);
+  }
+
+  25% {
+    transform: rotate(-25deg);
+  }
+
+  50% {
+    transform: rotate(25deg);
+  }
+
+  75% {
+    transform: rotate(-25deg);
+  }
+
+  100% {
+    transform: rotate(25deg);
+  }
 }
 
 /* QUIZ (tema dark) */
@@ -611,60 +625,162 @@ input {
   line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: 90%;
-  }
-
-  .cabecalho {
-    position: relative;
-    height: auto;
-    padding: 15px;
-  }
-
-  .menu {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .menu li {
-    margin-right: 0;
-  }
-
-  .chamada {
-    width: 100%;
-    text-align: center;
-  }
-
-  .banner .container,
-  .cadastro .container {
-    justify-content: center;
-  }
-
-  .banner p {
-    font-size: 24px;
-  }
-
-  .sobre-texto {
-    grid-template-columns: 1fr;
-    row-gap: 25px;
-  }
-
-  .sobre-texto h2 {
-    font-size: 28px;
-  }
-
-  .banner2 h1 {
-    font-size: 28px;
-  }
-
-  .gogogo {
-    display: none;
-  }
-}
 .tela_carregando {
-    display: none;
-    background-color: black;
-    color: white;
-    text-align: center;
+  display: none;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+/* TELA DE FAVORITOS (Com espaçamento adequado para afastar da Navbar) */
+
+.fav-pagina {
+  background-color: #b5179e;
+  margin: 0;
+}
+
+.fav-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px 60px 20px;
+  min-height: 75vh;
+  box-sizing: border-box;
+}
+
+#div_escolha,
+#div_confirmacao {
+  width: 1050px;
+  margin: 40px auto 0 auto;
+}
+
+.fav-titulo {
+  display: inline-block;
+  background-color: #000000;
+  color: #f5c518;
+  font-size: 42px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 15px 35px;
+  border: 6px solid #f5c518;
+  box-shadow: 10px 10px 0 #ffffff;
+  margin: 20px 0 50px 0;
+}
+
+/* Grade 3x3 fixa e alinhada */
+.fav-cartas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+.fav-carta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 170px;
+  padding: 25px 20px;
+  border: 6px solid #000000;
+  box-shadow: 10px 10px 0 #000000;
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.fav-carta h2 {
+  font-size: 24px;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.fav-carta p {
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.fav-carta:hover {
+  background-color: #000000;
+  color: #f5c518;
+  border-color: #f5c518;
+  transform: translate(-3px, -3px);
+  box-shadow: 0px 0px 0 #000000;
+}
+
+/* Cores temáticas por protagonista */
+.fav-jonathan {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+.fav-joseph {
+  background-color: #2a9d8f;
+  color: #ffffff;
+}
+
+.fav-jotaro {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.fav-josuke {
+  background-color: #f72585;
+  color: #ffffff;
+}
+
+.fav-giorno {
+  background-color: #f5c518;
+  color: #000000;
+}
+
+.fav-jolyne {
+  background-color: #10b981;
+  color: #000000;
+}
+
+.fav-johnny {
+  background-color: #38bdf8;
+  color: #000000;
+}
+
+.fav-gappy {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.fav-jodio {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+/* Tela de confirmação */
+.fav-nome {
+  color: #ffffff;
+  font-size: 56px;
+  text-transform: uppercase;
+  text-shadow: 5px 5px 0 #000000;
+  margin: 0 0 40px 0;
+}
+
+.fav-botao {
+  background-color: #f5c518;
+  color: #000000;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  border: 6px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  cursor: pointer;
+}
+
+.fav-botao:hover {
+  background-color: #000000;
+  color: #f5c518;
 }
