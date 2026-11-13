@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Stand By Me | Favorito</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
+</head>
+
+<body class="fav-pagina">
+    <!--header inicio-->
+    <div class="cabecalho">
+        <ul class="menu">
+            <li>
+                <a href="index.html">
+                    <h2><span>Stand By</span> Me</h2>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Sobre nós</a>
+            </li>
+        </ul>
+    </div>
+    <!--header fim-->
+
+    <div class="fav-conteudo">
+
+        <!-- Parte da escolha -->
+        <div id="div_escolha">
+            <h1 class="fav-titulo">Quem é o seu favorito?!</h1>
+
+            <div class="fav-cartas">
+                <button class="fav-carta fav-jonathan" onclick="escolher(1, 'Jonathan Joestar')">
+                    <h2>Jonathan Joestar</h2>
+                    <p>O primeiro cavalheiro. Coração puro.</p>
+                </button>
+
+                <button class="fav-carta fav-joseph" onclick="escolher(2, 'Joseph Joestar')">
+                    <h2>Joseph Joestar</h2>
+                    <p>Sempre tem um plano na manga.</p>
+                </button>
+
+                <button class="fav-carta fav-jotaro" onclick="escolher(3, 'Jotaro Kujo')">
+                    <h2>Jotaro Kujo</h2>
+                    <p>Poucas palavras. Muitos socos.</p>
+                </button>
+
+                <button class="fav-carta fav-josuke" onclick="escolher(4, 'Josuke Higashikata')">
+                    <h2>Josuke Higashikata</h2>
+                    <p>Leal até o fim. Não fale do cabelo dele.</p>
+                </button>
+
+                <button class="fav-carta fav-giorno" onclick="escolher(5, 'Giorno Giovanna')">
+                    <h2>Giorno Giovanna</h2>
+                    <p>Tem um grande sonho.</p>
+                </button>
+
+                <button class="fav-carta fav-jolyne" onclick="escolher(6, 'Jolyne Cujoh')">
+                    <h2>Jolyne Cujoh</h2>
+                    <p>Determinação inquebrável.</p>
+                </button>
+
+                <button class="fav-carta fav-johnny" onclick="escolher(7, 'Johnny Joestar')">
+                    <h2>Johnny Joestar</h2>
+                    <p>Em busca da rotação perfeita.</p>
+                </button>
+
+                <button class="fav-carta fav-gappy" onclick="escolher(8, 'Josuke Higashikata (Parte 8)')">
+                    <h2>Josuke (JoJolion)</h2>
+                    <p>Em busca da própria identidade.</p>
+                </button>
+
+                <button class="fav-carta fav-jodio" onclick="escolher(9, 'Jodio Joestar')">
+                    <h2>Jodio Joestar</h2>
+                    <p>Focado nos mecanismos do sucesso.</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- Parte da confirmação (começa escondida) -->
+        <div id="div_confirmacao" style="display: none;">
+            <h1 class="fav-titulo">Favorito confirmado!</h1>
+            <h2 class="fav-nome" id="nome_favorito"></h2>
+            <button class="fav-botao" onclick="trocar()">Mudar de ideia?!</button>
+        </div>
+
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+        <div class="container">
+            <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+        </div>
+    </div>
+    <!--footer fim-->
+</body>
+
+</html>
+<script>
+    function escolher(idPersonagem, nomePersonagem) {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        if (idUsuario == undefined) {
+            alert("Faça login para escolher o seu favorito.");
+            return;
+        }
+
+        fetch("/favorito/publicar/" + idUsuario, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idPersonagemServer: idPersonagem
+            })
+        })
+            .then(function (resposta) {
+                console.log("Favorito enviado, status: ", resposta.status);
+
+                if (resposta.ok) {
+                    nome_favorito.innerHTML = nomePersonagem;
+                    div_escolha.style.display = "none";
+                    div_confirmacao.style.display = "block";
+                } else {
+                    alert("Não foi possível salvar o favorito.");
+                }
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO ao salvar favorito: ${erro}`);
+            });
+    }
+
+    function trocar() {
+        div_confirmacao.style.display = "none";
+        div_escolha.style.display = "block";
+    }
+</script>
