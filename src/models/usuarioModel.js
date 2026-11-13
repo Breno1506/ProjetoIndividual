@@ -20,9 +20,14 @@ function cadastrar(nome, email, senha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
+function contar() {
+    var instrucaoSql = `
+        SELECT COUNT(*) AS total FROM usuario`;
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    contar
 };
