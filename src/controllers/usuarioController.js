@@ -82,9 +82,34 @@ function contar(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
+function publicar(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var idPersonagem = req.body.idPersonagemServer;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está indefinido!");
+    } else if (idPersonagem == undefined) {
+        res.status(400).send("O id do personagem está indefinido!");
+    } else {
+        favoritoModel.publicar(idUsuario, idPersonagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 
 module.exports = {
     autenticar,
     cadastrar,
-    contar
+    contar,
+    publicar
 }

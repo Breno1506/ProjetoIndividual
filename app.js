@@ -17,6 +17,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var quizRouter = require("./src/routes/quiz");               // Rota do Quiz
 var resultadoRouter = require("./src/routes/resultados");
+var favoritoRouter = require("./src/routes/favorito");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +29,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/quiz", quizRouter);               // Liberando o caminho /quiz
 app.use("/resultados", resultadoRouter); 
+app.use("/favorito", favoritoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
