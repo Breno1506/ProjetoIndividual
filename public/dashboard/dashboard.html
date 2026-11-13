@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Dashboards</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
@@ -30,52 +30,62 @@
 
 <body>
 
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
+    <body onload="validarSessao(), buscarQtdUsuarios()">
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <div class="janela">
+
+            <div class="header-left">
+                <h1>StandByMe</h1>
+
+                <div class="hello">
+                    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
+
+                <div class="btn-nav">
+                    <h3>Dashboard</h3>
+                </div>
+
+                <div class="btn-logout" onclick="limparSessao()">
+                    <h3>Sair</h3>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários e Terrários</h3>
-                </a>
+            <div class="dash">
+
+                <div class="dash-topo">
+                    <h2>Dashboard</h2>
+                    <p>Veja os números do StandByMe</p>
+                </div>
+
+                <div class="cards-resumo">
+                    <div class="card-resumo">
+                        <h3>Usuários cadastrados</h3>
+                        <p id="qtdUsuarios">0</p>
+                    </div>
+
+                    <div class="card-resumo">
+                        <h3>Personagem mais favoritado</h3>
+                        <p id="personagemTop">-</p>
+                    </div>
+                </div>
+
+                <div class="area-graficos">
+                    <div class="caixa-grafico">
+                        <h3>Usuários cadastrados</h3>
+                        <canvas id="graficoUsuarios"></canvas>
+                    </div>
+
+                    <div class="caixa-grafico">
+                        <h3>Personagens favoritos</h3>
+                        <canvas id="graficoFavoritos"></canvas>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
         </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
-        </div>
-    </div>
-
-
-</body>
+    </body>
 
 </html>
 
@@ -204,13 +214,13 @@
         let dados = {
             labels: labels,
             datasets: [
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(199, 52, 52)',
+                    tension: 0.1
+                }]
         };
 
         console.log('----------------------------------------------')
@@ -304,5 +314,41 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
+    }
+    function buscarQtdUsuarios() {
+        fetch("/usuarios/contar")
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
+                console.log(dados);
+                qtdUsuarios.innerHTML = dados[0].total;
+                plotarGraficoUsuarios(dados[0].total);
+            });
+    }
+
+    function plotarGraficoUsuarios(total) {
+        new Chart(graficoUsuarios, {
+            type: 'bar',
+            data: {
+                labels: ['Usuários'],
+                datasets: [{
+                    label: 'Cadastrados',
+                    data: [total],
+                    backgroundColor: '#f5c518',
+                    borderColor: '#7b2cbf',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    x: { ticks: { color: '#e8e0f0' } },
+                    y: { beginAtZero: true, ticks: { color: '#e8e0f0', precision: 0 } }
+                },
+                plugins: {
+                    legend: { labels: { color: '#e8e0f0' } }
+                }
+            }
+        });
     }
 </script>
