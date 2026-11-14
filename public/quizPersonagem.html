@@ -2,25 +2,23 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Stand By Me | Quiz</title>
+  <title>Stand By Me | Quiz</title>
 
-    <script src="./js/sessao.js"></script>
+  <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css" />
-    <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
 </head>
 
 <body>
-    <!--header inicio-->
+  <!--header inicio-->
   <div class="cabecalho">
     <ul class="menu">
       <li>
-        <a href="homePageLogada.html">
-          <h2><span>Stand By</span> Me</h2>
-        </a>
+        <h2><span>Stand By</span> Me</h2>
       </li>
       <li>
         <a href="homePageLogada.html">Home</a>
@@ -39,44 +37,44 @@
       </li>
     </ul>
   </div>
-    <!--header fim-->
+  <!--header fim-->
 
-    <div class="quiz">
-        <div class="container">
-            <div class="card card-quiz">
+  <div class="quiz">
+    <div class="container">
+      <div class="card card-quiz">
 
-                <!-- Parte das perguntas -->
-                <div id="div_pergunta">
-                    <span id="numero_pergunta">Pergunta 1 de 5</span>
-                    <h2 id="texto_pergunta">Texto da pergunta</h2>
+        <!-- Parte das perguntas -->
+        <div id="div_pergunta">
+          <span id="numero_pergunta">Pergunta 1 de 5</span>
+          <h2 id="texto_pergunta">Texto da pergunta</h2>
 
-                    <div id="div_alternativas">
-                        <button class="botao-alternativa">Alternativa 1</button>
-                        <button class="botao-alternativa">Alternativa 2</button>
-                        <button class="botao-alternativa">Alternativa 3</button>
-                        <button class="botao-alternativa">Alternativa 4</button>
-                    </div>
-                </div>
-
-                <!-- Parte do resultado (começa escondida) -->
-                <div id="div_resultado" style="display: none;">
-                    <h2>Você se identifica com:</h2>
-                    <h1 id="nome_personagem"></h1>
-                    <p id="descricao_personagem"></p>
-                    <button class="botao" onclick="refazer()">Refazer o quiz</button>
-                </div>
-
-            </div>
+          <div id="div_alternativas">
+            <button class="botao-alternativa">Alternativa 1</button>
+            <button class="botao-alternativa">Alternativa 2</button>
+            <button class="botao-alternativa">Alternativa 3</button>
+            <button class="botao-alternativa">Alternativa 4</button>
+          </div>
         </div>
-    </div>
 
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+        <!-- Parte do resultado (começa escondida) -->
+        <div id="div_resultado" style="display: none;">
+          <h2>Você se identifica com:</h2>
+          <h1 id="nome_personagem"></h1>
+          <p id="descricao_personagem"></p>
+          <button class="botao" onclick="refazer()">Refazer o quiz</button>
         </div>
+
+      </div>
     </div>
-    <!--footer fim-->
+  </div>
+
+  <!--footer inicio-->
+  <div class="footer">
+    <div class="container">
+      <h4>Stand by me © 2026. Seu guia pelo universo de JoJo.</h4>
+    </div>
+  </div>
+  <!--footer fim-->
 </body>
 
 </html>
@@ -138,7 +136,7 @@
 
   function carregarQuiz() {
     console.log("A tentar carregar perguntas do servidor...");
-    
+
     fetch("/quiz/listar")
       .then(function (resposta) {
         console.log("Resposta do servidor recebida:", resposta.status);
@@ -231,7 +229,7 @@
     else if (vencedor == "Josuke Higashikata") idPersonagemVencedor = 4;
 
     nome_personagem.innerHTML = vencedor;
-    
+
     var descricoes = {
       "Jotaro Kujo": "Frio, forte e de poucas palavras. Você enfrenta os problemas de frente e não precisa de muito discurso para impor respeito.",
       "Joseph Joestar": "Esperto e cheio de truques. Você resolve as situações com criatividade e sempre tem um plano na manga.",
