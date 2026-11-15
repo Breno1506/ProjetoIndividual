@@ -9,9 +9,9 @@
   <title>Stand By Me | Início</title>
 
   <script src="./js/sessao.js"></script>
+  <script src="../js/loading.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css">
-  <link rel="icon" href="./assets/icon/favicon2.ico">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -20,16 +20,16 @@
     <ul class="menu">
       <li>
 
-        <h2>Stand By <span>Me</span> <img src="../public/assets/imgs/giphy.gif" alt="menacing" class="menacing-gif"></h2>
+        <h2>Stand By <span>Me</span></h2>
       </li>
       <li>
         <a href="homePageLogada.html">Home</a>
       </li>
       <li>
-        <a href="../public/sobre_nos.html">Sobre nós</a>
+        <a href="sobre_nos_logado.html">Sobre nós</a>
       </li>
       <li>
-        <a href="dashboard/dashboard.html">Dashboard</a>
+        <a href="./dashboard/dashboard.html">Dashboard</a>
       </li>
       <li>
         <a href="favorito.html">Favorito</a>
@@ -63,8 +63,11 @@
     </div>
   </div>
 
-    <div class="banner3">
-    
+  <div class="social2">
+    <div class="container2">
+      <div class="sobre-texto2">
+      </div>
+    </div>
   </div>
 
   <div class="banner2">
@@ -95,5 +98,12 @@
 
   if (nomeUsuario != undefined) {
     b_usuario.innerHTML = nomeUsuario;
+  }
+
+  function limparSessao() {
+    sessionStorage.clear(); 
+
+    // Adiciona o redirecionamento para a página inicial
+    window.location.href = "index.html";
   }
 </script>

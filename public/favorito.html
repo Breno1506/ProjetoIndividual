@@ -7,10 +7,9 @@
 
     <title>Stand By Me | Favorito</title>
 
-    <script src="./js/sessao.js"></script>
+    <script src="./js/loading.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css" />
-    <link rel="icon" href="./assets/icon/favicon2.ico" />
 </head>
 
 <body class="fav-pagina">
@@ -24,7 +23,7 @@
         <a href="homePageLogada.html">Home</a>
       </li>
       <li>
-        <a href="sobre_nos.html">Sobre nós</a>
+        <a href="sobre_nos_logado.html">Sobre nós</a>
       </li>
       <li>
         <a href="dashboard/dashboard.html">Dashboard</a>
@@ -147,4 +146,10 @@
         div_confirmacao.style.display = "none";
         div_escolha.style.display = "block";
     }
+      function limparSessao() {
+    sessionStorage.clear(); 
+
+    // Adiciona o redirecionamento para a página inicial
+    window.location.href = "index.html";
+  }
 </script>
