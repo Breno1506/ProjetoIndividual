@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/loading.js"></script>
+    <title>Avalie o site | Stand By Me</title>
+    <link rel="stylesheet" href="../css/avaliacao.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <p class="menacing">ゴ ゴ ゴ ゴ</p>
+            <h1>Avalie o site</h1>
+            <p class="subtitulo">O que você achou da nossa aventura bizarra?</p>
+
+            <div class="estrelas">
+                <button type="button" id="estrela-1" class="estrela" onclick="escolherNota(1)">★</button>
+                <button type="button" id="estrela-2" class="estrela" onclick="escolherNota(2)">★</button>
+                <button type="button" id="estrela-3" class="estrela" onclick="escolherNota(3)">★</button>
+                <button type="button" id="estrela-4" class="estrela" onclick="escolherNota(4)">★</button>
+                <button type="button" id="estrela-5" class="estrela" onclick="escolherNota(5)">★</button>
+            </div>
+            <p id="texto-nota" class="texto-nota">Clique nas estrelas para dar sua nota</p>
+
+            <label for="input-comentario">Seu comentário</label><br><br>
+            <textarea id="input-comentario" maxlength="500" placeholder="Conte o que você achou do site..."
+                oninput="contarCaracteres()"></textarea>
+            <p class="contador"><span id="span-contador">0</span>/500</p>
+
+            <button type="button" class="btn-enviar" onclick="enviarAvaliacao()">Enviar
+                avaliação</button>
+            <p id="mensagem" class="mensagem"></p>
+
+            <button class="btn-voltar" onclick="voltar()">Voltar</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let notaEscolhida = 0;
+
+    let textosNota = ["", "Muito ruim", "Ruim", "Regular", "Bom", "Yare yare daze... excelente!"];
+
+    function escolherNota(nota) {
+        notaEscolhida = nota;
+
+        for (let i = 1; i <= 5; i++) {
+            let estrela = document.getElementById("estrela-" + i);
+
+            if (i <= nota) {
+                estrela.style.color = "#f2c94c";
+            } else {
+                estrela.style.color = "#3a3a3a";
+            }
+        }
+
+        document.getElementById("texto-nota").innerHTML = textosNota[nota];
+    }
+
+    function contarCaracteres() {
+        let comentario = document.getElementById("input-comentario").value;
+        document.getElementById("span-contador").innerHTML = comentario.length;
+    }
+
+    function mostrarMensagem(texto, cor) {
+        let mensagem = document.getElementById("mensagem");
+        mensagem.innerHTML = texto;
+        mensagem.style.color = cor;
+    }
+
+    function enviarAvaliacao() {
+        let comentario = document.getElementById("input-comentario").value.trim();
+        let idUsuario = sessionStorage.ID_USUARIO;
+
+        if (notaEscolhida == 0) {
+            mostrarMensagem("Escolha uma nota clicando nas estrelas.", "#eb5757");
+            return;
+        }
+
+        if (comentario == "") {
+            mostrarMensagem("Escreva um comentário antes de enviar.", "#eb5757");
+            return;
+        }
+
+        if (idUsuario == undefined) {
+            mostrarMensagem("Você precisa estar logado para avaliar.", "#eb5757");
+            return;
+        }
+
+        // Rota corrigida com /avaliacoes (plural) e enviando 'nota'
+        fetch(`/avaliacoes/publicar/${idUsuario}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nota: notaEscolhida,
+                comentario: comentario
+            })
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    mostrarMensagem("Obrigado pela sua avaliação!", "#6fcf97");
+                    limparFormulario();
+                } else {
+                    mostrarMensagem("Não foi possível enviar. Tente novamente.", "#eb5757");
+                }
+            })
+            .catch(function (erro) {
+                console.log("Erro ao enviar avaliação: ", erro);
+                mostrarMensagem("Erro de conexão com o servidor.", "#eb5757");
+            });
+    }
+
+    function limparFormulario() {
+        escolherNota(0);
+        document.getElementById("texto-nota").innerHTML = "Clique nas estrelas para dar sua nota";
+        document.getElementById("input-comentario").value = "";
+        contarCaracteres();
+    }
+
+    function voltar() {
+        window.location.href = "../homePageLogada.html";
+    }
+</script>
