@@ -18,6 +18,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var quizRouter = require("./src/routes/quiz");               // Rota do Quiz
 var resultadoRouter = require("./src/routes/resultados");
 var favoritoRouter = require("./src/routes/favorito");
+var avaliacaoRouter = require("./src/routes/avaliacao");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,9 +28,10 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/quiz", quizRouter);               // Liberando o caminho /quiz
+app.use("/quiz", quizRouter);              
 app.use("/resultados", resultadoRouter); 
 app.use("/favorito", favoritoRouter);
+app.use("/avaliacoes", avaliacaoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
