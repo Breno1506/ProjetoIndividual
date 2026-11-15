@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #e5e5e5;
+    font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.menacing {
+    color: #7b2cbf;
+    font-size: 22px;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.subtitulo {
+    color: #9a9a9a;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.estrelas {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.estrela {
+    font-size: 40px;
+    color: #3a3a3a;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+}
+
+.estrela.ativa {
+    color: #f5c518;
+}
+
+.texto-nota {
+    min-height: 20px;
+    font-size: 14px;
+    color: #f5c518;
+    margin-bottom: 24px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    background-color: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    color: #e5e5e5;
+    font-size: 14px;
+    padding: 12px;
+    resize: none;
+    transition: all 0.2s ease;
+    box-shadow: none;
+
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #7b2cbf;
+    border-color: #ff4fa3;
+    transform: translateY(-2px) rotate(-2deg);
+    box-shadow: 5px 5px 0 #ff4fa3;
+
+}
+
+.contador {
+    text-align: right;
+    font-size: 12px;
+    color: #9a9a9a;
+    margin: 6px 0 20px 0;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 14px;
+    background-color: #7b2cbf;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: 3px solid #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 0 #ff4fa3;
+}
+
+
+
+.btn-enviar:hover {
+    background-color: #ff4fa3;
+    color: #000;
+    box-shadow: none;
+    transform: translateY(-2px) rotate(-2deg);
+}
+
+.btn-voltar {
+    width: 40%;
+    padding: 3px;
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: 3px solid #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 0 #fff;
+}
+
+.btn-voltar:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: none;
+}
+
+.mensagem {
+    margin-top: 16px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.mensagem.erro {
+    color: #ff6b6b;
+}
+
+.mensagem.sucesso {
+    color: #51cf66;
+}
