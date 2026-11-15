@@ -142,21 +142,23 @@
                 display: inline-block;
                 margin-top: 24px;
                 padding: 12px 30px;
-                background-color: transparent;
-                color: #fff;
-                border: 2px solid blanchedalmond;
+                border: 2px solid #fff;
+                background-image: linear-gradient(#fff, #fff);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                color: black;
                 font-size: 18px;
                 font-weight: 800;
                 text-decoration: none;
                 border-radius: 5px;
-                transition: all 0.3s ease;
+                transition: background-size 0.6s ease, color 0.6s ease;
               }
 
               .botao-chamada:hover {
-                background-color: #ff4fa3;
-                color: #0E1A12;
-                box-shadow: 0 0 15px rgba(228, 228, 227, 0.4);
+                background-size: 0% 100%;
+                color: #fff;
               }
+
 
               .faixa-conexao {
                 width: 100%;
@@ -259,6 +261,61 @@
               }
 
               .sobre-texto p {
+                text-align: left;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 1.7;
+                color: #111;
+                margin: 0;
+                padding-top: 15px;
+                border-top: 3px solid #F2C230;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+              }
+
+              .social2 {
+                display: flex;
+                position: static;
+                min-height: var(--tamanho-banner);
+                align-items: center;
+                padding: 60px 0;
+                box-sizing: border-box;
+                min-height: 135vh;
+              }
+
+              .social2 .container2 {
+                justify-content: center;
+                width: 80%;
+              }
+
+              .sobre-texto2 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: 40px;
+              }
+
+              .sobre-texto2 h2 {
+                grid-column: 1 / -1;
+                font-size: 40px;
+                font-weight: 800;
+                line-height: 1.1;
+                margin: 0 0 30px 0;
+                color: #111;
+                text-transform: uppercase;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+              }
+
+              .sobre-texto2 h2::before {
+                content: "Site informativo";
+                display: block;
+                font-size: 14px;
+                font-weight: 800;
+                letter-spacing: 4px;
+                color: #ff4fa3;
+                margin-bottom: 12px;
+              }
+
+              .sobre-texto2 p {
                 text-align: left;
                 font-size: 16px;
                 font-weight: 700;
@@ -690,187 +747,250 @@
               }
 
               .tela_carregando {
-                display: none;
-                background-color: black;
-                color: white;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: #0c0814;
+                /* Cor escura do tema do site */
+                color: #f5c518;
+                /* Amarelo estilo JoJo */
+                font-family: 'Exo 2', sans-serif;
+                font-size: 1.5rem;
+                font-weight: bold;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                /* Fica por cima de tudo */
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 1s ease, visibility 0.7s ease;
+              }
+
+              /* Classe que vamos usar via JavaScript para esconder a tela */
+              .tela_carregando.hidden {
+                opacity: 0;
+                visibility: hidden;
+              }
+
+              .subtitulo {
+                color: #F2C230;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin-bottom: 12px;
+              }
+
+              .destaque-amarelo {
+                display: inline-block;
+                background-color: #F2C230;
+                padding: 2px 12px;
+                transform: rotate(-2deg);
+                box-shadow: 4px 4px 0 #ff4fa3;
+              }
+
+              .destaque-rosa {
+                display: inline-block;
+                background-color: #ff4fa3;
+                padding: 2px 12px;
+                transform: rotate(2deg);
+                box-shadow: 4px 4px 0 #F2C230;
+              }
+
+
+
+              /* PÁGINA SOBRE NÓS (LAYOUT COMPLETO) */
+
+
+              .sobre-hero {
+                background-color: #000;
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), #0a0a0a), url('../assets/imgs/image\ 17.svg');
+                background-size: cover;
+                background-position: center;
+                padding: 130px 0 80px 0;
+                border-bottom: 4px solid #ff4fa3;
+                text-align: center;
+                min-height: 90vh;
+              }
+
+              .sobre-hero-conteudo {
+                max-width: 800px;
+                margin: 0 auto;
+              }
+
+              .tag-jojo {
+                display: inline-block;
+                background-color: #F2C230;
+                color: #000;
+                font-weight: 900;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                padding: 6px 16px;
+                margin-bottom: 18px;
+                border: 2px solid #fff;
+              }
+
+              .sobre-hero h1 {
+                font-size: 46px;
+                font-weight: 900;
+                font-style: italic;
+                text-transform: uppercase;
+                color: #fff;
+                margin: 0 0 20px 0;
+                line-height: 1.1;
+              }
+
+              .sobre-hero h1 span {
+                color: #ff4fa3;
+              }
+
+              .sobre-hero p {
+                font-size: 18px;
+                color: #d4d4d4;
+                line-height: 1.6;
+                margin: 0;
+              }
+
+              /* Seções de Conteúdo Alternadas */
+              .sobre-secao {
+                background-color: #0a0a0a;
+                padding: 90px 0;
+                border-bottom: 2px solid #1f1f1f;
+              }
+
+              .fundo-escuro-alternado {
+                background-color: #111111;
+              }
+
+              .sobre-linha {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 60px;
+              }
+
+              /* Inverte a ordem para jogar a imagem para a direita na Parte 2 */
+              .linha-invertida {
+                flex-direction: row-reverse;
+              }
+
+              /* Molduras das Imagens Estilo Mangá/HQ */
+              .sobre-moldura-img {
+                width: 42%;
+                flex-shrink: 0;
+                background-color: #000;
+                padding: 10px;
+                box-sizing: border-box;
+                position: relative;
+                transition: 1s;
+              }
+
+              .sobre-moldura-img:hover {
+                cursor: pointer;
+                box-shadow: none;
+                transform: rotate(2deg);
+                transition: transform box-shadow 1s;
+              }
+
+              .sobre-moldura-img img {
+                width: 100%;
+                height: 580px;
+                object-position: center top;
+                /* Foca mais na parte superior da imagem (rosto) */
+                object-fit: cover;
+                /* Garante que sua foto ou imagem do anime preencha sem esticar */
+                display: block;
+              }
+
+
+              .borda-rosa {
+                border: 4px solid #ff4fa3;
+                box-shadow: 12px 12px 0px #F2C230;
+              }
+
+              .borda-amarela {
+                border: 4px solid #F2C230;
+                box-shadow: -12px 12px 0px #ff4fa3;
+              }
+
+              .legenda-img {
+                display: block;
+                background-color: #000;
+                color: #fff;
+                font-size: 13px;
+                font-weight: 800;
+                font-style: italic;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 10px 5px 4px 5px;
                 text-align: center;
               }
 
-   /* PÁGINA SOBRE NÓS (LAYOUT COMPLETO) */
+              /* Blocos de Texto */
+              .sobre-conteudo-bloco {
+                width: 58%;
+              }
 
+              .subtitulo-bloco {
+                display: block;
+                font-size: 14px;
+                font-weight: 800;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                color: #F2C230;
+                margin-bottom: 10px;
+              }
 
-.sobre-hero {
-  background-color: #000;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), #0a0a0a), url('../assets/imgs/image\ 12.svg');
-  background-size: cover;
-  background-position: center;
-  padding: 130px 0 80px 0;
-  border-bottom: 4px solid #ff4fa3;
-  text-align: center;
-min-height: 70vh;
-}
+              .sobre-conteudo-bloco h2 {
+                font-size: 36px;
+                font-weight: 900;
+                font-style: italic;
+                text-transform: uppercase;
+                color: #fff;
+                margin: 0 0 22px 0;
+                line-height: 1.15;
+              }
 
-.sobre-hero-conteudo {
-  max-width: 800px;
-  margin: 0 auto;
-}
+              .sobre-conteudo-bloco h2 span {
+                color: #ff4fa3;
+              }
 
-.tag-jojo {
-  display: inline-block;
-  background-color: #F2C230;
-  color: #000;
-  font-weight: 900;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 6px 16px;
-  margin-bottom: 18px;
-  border: 2px solid #fff;
-}
+              .sobre-conteudo-bloco p {
+                font-size: 16px;
+                font-weight: 500;
+                color: #cccccc;
+                line-height: 1.8;
+                margin: 0 0 18px 0;
+                text-align: justify;
+              }
 
-.sobre-hero h1 {
-  font-size: 46px;
-  font-weight: 900;
-  font-style: italic;
-  text-transform: uppercase;
-  color: #fff;
-  margin: 0 0 20px 0;
-  line-height: 1.1;
-}
+              .sobre-conteudo-bloco strong {
+                color: #F2C230;
+              }
 
-.sobre-hero h1 span {
-  color: #ff4fa3;
-}
+              .sobre-botoes-finais {
+                margin-top: 30px;
+                display: flex;
+                gap: 20px;
+              }
 
-.sobre-hero p {
-  font-size: 18px;
-  color: #d4d4d4;
-  line-height: 1.6;
-  margin: 0;
-}
+              .botao-destaque-rosa {
+                background-color: #ff4fa3;
+                border-color: #fff;
+                color: #000;
+              }
 
-/* Seções de Conteúdo Alternadas */
-.sobre-secao {
-  background-color: #0a0a0a;
-  padding: 90px 0;
-  border-bottom: 2px solid #1f1f1f;
-}
-
-.fundo-escuro-alternado {
-  background-color: #111111;
-}
-
-.sobre-linha {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-}
-
-/* Inverte a ordem para jogar a imagem para a direita na Parte 2 */
-.linha-invertida {
-  flex-direction: row-reverse;
-}
-
-/* Molduras das Imagens Estilo Mangá/HQ */
-.sobre-moldura-img {
-  width: 42%;
-  flex-shrink: 0;
-  background-color: #000;
-  padding: 10px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.sobre-moldura-img img {
-  width: 100%;
-  height: 580px;
-  object-fit: cover; /* Garante que sua foto ou imagem do anime preencha sem esticar */
-  display: block;
-}
-
-.borda-rosa {
-  border: 4px solid #ff4fa3;
-  box-shadow: 12px 12px 0px #F2C230;
-}
-
-.borda-amarela {
-  border: 4px solid #F2C230;
-  box-shadow: -12px 12px 0px #ff4fa3;
-}
-
-.legenda-img {
-  display: block;
-  background-color: #000;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  font-style: italic;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 10px 5px 4px 5px;
-  text-align: center;
-}
-
-/* Blocos de Texto */
-.sobre-conteudo-bloco {
-  width: 58%;
-}
-
-.subtitulo-bloco {
-  display: block;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #F2C230;
-  margin-bottom: 10px;
-}
-
-.sobre-conteudo-bloco h2 {
-  font-size: 36px;
-  font-weight: 900;
-  font-style: italic;
-  text-transform: uppercase;
-  color: #fff;
-  margin: 0 0 22px 0;
-  line-height: 1.15;
-}
-
-.sobre-conteudo-bloco h2 span {
-  color: #ff4fa3;
-}
-
-.sobre-conteudo-bloco p {
-  font-size: 16px;
-  font-weight: 500;
-  color: #cccccc;
-  line-height: 1.8;
-  margin: 0 0 18px 0;
-  text-align: justify;
-}
-
-.sobre-conteudo-bloco strong {
-  color: #F2C230;
-}
-
-.sobre-botoes-finais {
-  margin-top: 30px;
-  display: flex;
-  gap: 20px;
-}
-
-.botao-destaque-rosa {
-  background-color: #ff4fa3;
-  border-color: #ff4fa3;
-  color: #000;
-}
-
-.botao-destaque-rosa:hover {
-  background-color: #F2C230;
-  border-color: #F2C230;
-  color: #000;
-}
+              .botao-destaque-rosa:hover {
+                background-color: #F2C230;
+                border-color: #fff;
+                color: #000;
+              }
 
               /* TELA DE FAVORITOS (Com espaçamento adequado para afastar da Navbar) */
 
