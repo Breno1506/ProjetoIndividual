@@ -34,9 +34,22 @@ function listarPorUsuario(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function buscarMetricas() {
+    var instrucaoSql = `
+        SELECT 
+            nota, 
+            COUNT(*) AS total 
+        FROM avaliacao 
+        GROUP BY nota 
+        ORDER BY nota ASC;
+    `;
 
-function publicar(nota, idUsuario) {
-    var instrucaoSql = `INSERT INTO avaliacao (fkUsuario, nota) VALUES (${idUsuario}, ${nota})`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function publicar(nota, comentario, idUsuario) {
+    var instrucaoSql = `INSERT INTO avaliacao (nota, comentario, fkUsuario, dtAvaliacao) VALUES (${nota}, '${comentario}', ${idUsuario}, NOW())`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -61,5 +74,6 @@ module.exports = {
     listarPorUsuario,
     publicar,
     editar,
-    deletar
+    deletar,
+    buscarMetricas
 }

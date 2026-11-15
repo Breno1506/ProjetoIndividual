@@ -41,6 +41,7 @@ function listarPorUsuario(req, res) {
 
 function publicar(req, res) {
     var nota = req.body.nota;
+    var comentario = req.body.comentario;
     var idUsuario = req.params.idUsuario;
 
     if (nota == undefined) {
@@ -48,7 +49,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avaliacaoModel.publicar(nota, idUsuario)
+        avaliacaoModel.publicar(nota, comentario, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -100,11 +101,27 @@ function deletar(req, res) {
             }
         );
 }
+function buscarMetricas(req, res) {
+    avaliacaoModel.buscarMetricas()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as métricas: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 module.exports = {
     listar,
     listarPorUsuario,
     publicar,
     editar,
-    deletar
+    deletar,
+    buscarMetricas
 }

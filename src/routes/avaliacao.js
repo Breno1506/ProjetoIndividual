@@ -3,6 +3,10 @@ var router = express.Router();
 
 var avaliacaoController = require("../controllers/avaliacaoController");
 
+router.get("/metricas", function (req, res) {
+    avaliacaoController.buscarMetricas(req, res);
+});
+
 router.get("/listar", function (req, res) {
     avaliacaoController.listar(req, res);
 });
